@@ -1,0 +1,21 @@
+# Compilación de Maven
+target/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+
+# Configuración local de ngrok (contiene el authtoken)
+ngrok.yml

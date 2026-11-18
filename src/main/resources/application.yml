@@ -1,0 +1,39 @@
+# Perfil por defecto al correr desde el IDE: local.
+# En Kubernetes se sobrescribe con la variable SPRING_PROFILES_ACTIVE=k8s
+spring:
+  profiles:
+    active: local
+  application:
+    name: java-api-demo
+  jpa:
+    hibernate:
+      ddl-auto: none          # la estructura de la BD la crea Flyway
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8085
+  servlet:
+    context-path: /api/demo   # http://localhost:8085/api/demo/student/...
+
+# Endpoints de salud (los usan las probes de Kubernetes)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+# Documentación Swagger: http://localhost:8085/api/demo/swagger-ui.html
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+# Nombre del equipo (se puede cambiar con la variable de entorno TEAM_NAME)
+team:
+  name: ${TEAM_NAME:Equipo 1}
